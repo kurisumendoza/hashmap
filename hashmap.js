@@ -53,6 +53,10 @@ class HashMap {
       return this.buckets[index];
     if (this.buckets[index].contains(key)) return this.buckets[index].get(key);
   }
+
+  has(key) {
+    return this.get(key) !== undefined;
+  }
 }
 
 export default HashMap;
