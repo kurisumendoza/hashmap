@@ -34,6 +34,12 @@ class LinkedList {
     this.at(this.find(key)).value = value;
   }
 
+  get(key) {
+    if (!this.contains(key)) return;
+    const node = this.at(this.find(key));
+    return [node.key, node.value];
+  }
+
   size() {
     if (!this.list) return 0;
 

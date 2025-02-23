@@ -44,6 +44,15 @@ class HashMap {
       this.buckets[index].update(key, value);
     else this.buckets[index].append(key, value);
   }
+
+  get(key) {
+    const index = this.hash(key);
+
+    if (!this.buckets[index]) return undefined;
+    if (Array.isArray(this.buckets[index]) && this.buckets[index][0] === key)
+      return this.buckets[index];
+    if (this.buckets[index].contains(key)) return this.buckets[index].get(key);
+  }
 }
 
 export default HashMap;
