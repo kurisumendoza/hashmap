@@ -1,3 +1,5 @@
+import LinkedList from './linked-list.js';
+
 class HashMap {
   constructor() {
     this.capacity = 16;
@@ -14,6 +16,33 @@ class HashMap {
     }
 
     return hashCode;
+  }
+
+  set(key, value) {
+    const index = this.hash(key);
+
+    if (!this.buckets[index]) {
+      this.buckets[index] = [key, value];
+      return;
+    }
+
+    if (Array.isArray(this.buckets[index]) && key === this.buckets[index][0]) {
+      this.buckets[index][1] = value;
+      return;
+    }
+
+    if (Array.isArray(this.buckets[index])) {
+      const [oldKey, oldValue] = this.buckets[index];
+      const list = new LinkedList();
+      list.append(oldKey, oldValue);
+      list.append(key, value);
+      this.buckets[index] = list;
+      return;
+    }
+
+    if (this.buckets[index].contains(key))
+      this.buckets[index].update(key, value);
+    else this.buckets[index].append(key, value);
   }
 }
 
