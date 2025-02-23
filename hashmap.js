@@ -51,11 +51,29 @@ class HashMap {
     if (!this.buckets[index]) return undefined;
     if (Array.isArray(this.buckets[index]) && this.buckets[index][0] === key)
       return this.buckets[index];
-    if (this.buckets[index].contains(key)) return this.buckets[index].get(key);
+    if (
+      this.buckets[index] instanceof LinkedList &&
+      this.buckets[index].contains(key)
+    )
+      return this.buckets[index].get(key);
   }
 
   has(key) {
     return this.get(key) !== undefined;
+  }
+
+  remove(key) {
+    if (!this.has(key)) return;
+
+    const index = this.hash(key);
+
+    if (Array.isArray(this.buckets[index])) delete this.buckets[index];
+    else if (this.buckets[index].size() === 2) {
+      this.buckets[index].removeAt(this.buckets[index].find(key));
+
+      const node = this.buckets[index].head();
+      this.buckets[index] = [node.key, node.value];
+    } else this.buckets[index].removeAt(this.buckets[index].find(key));
   }
 }
 
