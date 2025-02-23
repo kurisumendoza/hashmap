@@ -75,6 +75,13 @@ class HashMap {
       this.buckets[index] = [node.key, node.value];
     } else this.buckets[index].removeAt(this.buckets[index].find(key));
   }
+
+  length() {
+    return this.buckets.reduce(
+      (num, el) => num + (Array.isArray(el) ? 1 : el.size()),
+      0
+    );
+  }
 }
 
 export default HashMap;

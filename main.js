@@ -22,3 +22,5 @@ console.log('GET HAT:', test.get('hat'));
 
 console.log('HAS ICE CREAM:', test.has('ice cream'));
 console.log('HAS MANGO:', test.has('mango'));
+
+console.log('NUMBER OF KEYS:', test.length());
