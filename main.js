@@ -16,6 +16,7 @@ test.set('kite', 'pink');
 test.set('lion', 'golden');
 
 // test.remove('hat');
+// test.clear();
 
 console.log('GET APPLE:', test.get('apple'));
 console.log('GET HAT:', test.get('hat'));

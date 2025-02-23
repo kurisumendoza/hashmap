@@ -82,6 +82,11 @@ class HashMap {
       0
     );
   }
+
+  clear() {
+    this.capacity = 16;
+    this.buckets = new Array(this.capacity);
+  }
 }
 
 export default HashMap;
