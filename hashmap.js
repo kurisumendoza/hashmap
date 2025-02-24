@@ -115,6 +115,20 @@ class HashMap {
       return values;
     }, []);
   }
+
+  entries() {
+    return this.buckets.reduce((entries, el) => {
+      if (Array.isArray(el)) entries.push(el);
+      else {
+        let current = el.head();
+        while (current) {
+          entries.push([current.key, current.value]);
+          current = current.nextNode;
+        }
+      }
+      return entries;
+    }, []);
+  }
 }
 
 export default HashMap;

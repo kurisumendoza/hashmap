@@ -28,3 +28,4 @@ console.log('NUMBER OF KEYS:', test.length());
 
 console.log('ARRAY OF KEYS:', test.keys());
 console.log('ARRAY OF VALUES:', test.values());
+console.log('ARRAY OF ENTRIES:', test.entries());
