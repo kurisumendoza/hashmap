@@ -7,7 +7,7 @@ class HashMap {
     this.buckets = new Array(this.capacity);
   }
 
-  hash(key) {
+  #hash(key) {
     let hashCode = 0;
 
     const primeNumber = 31;
@@ -18,8 +18,30 @@ class HashMap {
     return hashCode;
   }
 
+  #rehash() {
+    this.capacity *= 2;
+
+    const oldBuckets = this.buckets;
+    this.clear();
+
+    oldBuckets.forEach((entry) => {
+      if (!entry) return;
+      if (Array.isArray(entry)) {
+        this.set(entry[0], entry[1]);
+      } else {
+        let current = entry.head();
+        while (current) {
+          this.set(current.key, current.value);
+          current = current.nextNode;
+        }
+      }
+    });
+  }
+
   set(key, value) {
-    const index = this.hash(key);
+    if (this.length() >= this.capacity * this.loadFactor) this.#rehash();
+
+    const index = this.#hash(key);
 
     if (!this.buckets[index]) {
       this.buckets[index] = [key, value];
@@ -46,7 +68,7 @@ class HashMap {
   }
 
   get(key) {
-    const index = this.hash(key);
+    const index = this.#hash(key);
 
     if (!this.buckets[index]) return undefined;
     if (Array.isArray(this.buckets[index]) && this.buckets[index][0] === key)
@@ -65,7 +87,7 @@ class HashMap {
   remove(key) {
     if (!this.has(key)) return;
 
-    const index = this.hash(key);
+    const index = this.#hash(key);
 
     if (Array.isArray(this.buckets[index])) delete this.buckets[index];
     else if (this.buckets[index].size() === 2) {
@@ -84,7 +106,6 @@ class HashMap {
   }
 
   clear() {
-    this.capacity = 16;
     this.buckets = new Array(this.capacity);
   }
 

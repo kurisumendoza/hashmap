@@ -10,10 +10,12 @@ test.set('elephant', 'gray');
 test.set('frog', 'green');
 test.set('grape', 'purple');
 test.set('hat', 'black');
+test.set('hat', 'olive');
 test.set('ice cream', 'white');
 test.set('jacket', 'blue');
 test.set('kite', 'pink');
 test.set('lion', 'golden');
+test.set('moon', 'silver');
 
 // test.remove('hat');
 // test.clear();
