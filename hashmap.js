@@ -87,6 +87,20 @@ class HashMap {
     this.capacity = 16;
     this.buckets = new Array(this.capacity);
   }
+
+  keys() {
+    return this.buckets.reduce((keys, el) => {
+      if (Array.isArray(el)) keys.push(el[0]);
+      else {
+        let current = el.head();
+        while (current) {
+          keys.push(current.key);
+          current = current.nextNode;
+        }
+      }
+      return keys;
+    }, []);
+  }
 }
 
 export default HashMap;

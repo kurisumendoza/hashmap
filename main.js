@@ -25,3 +25,5 @@ console.log('HAS ICE CREAM:', test.has('ice cream'));
 console.log('HAS MANGO:', test.has('mango'));
 
 console.log('NUMBER OF KEYS:', test.length());
+
+console.log('ARRAY OF KEYS:', test.keys());
