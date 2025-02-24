@@ -27,3 +27,4 @@ console.log('HAS MANGO:', test.has('mango'));
 console.log('NUMBER OF KEYS:', test.length());
 
 console.log('ARRAY OF KEYS:', test.keys());
+console.log('ARRAY OF VALUES:', test.values());
